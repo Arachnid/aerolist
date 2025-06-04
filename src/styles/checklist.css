@@ -1,0 +1,150 @@
+/* Print Styles */
+@media print {
+  html, body { 
+    background: white; 
+    background-color: white;
+  }
+  
+  body { 
+    margin: 0; 
+    background: white; 
+    font-size: 10px;
+  }
+  
+  .no-print { 
+    display: none; 
+  }
+  
+  .print-only { 
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 2mm;
+    padding: 2mm;
+    background: white;
+  }
+  
+  .checklist-container { 
+    page-break-inside: avoid;
+    width: 69.5mm;
+    min-height: auto;
+    margin: 0;
+    padding: 2mm;
+    box-sizing: border-box;
+    font-size: 12px;
+    flex: 0 0 auto;
+    background: white;
+  }
+  
+  .checklist-container h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    padding: 2mm;
+  }
+  
+  .checklist-container .border-2 {
+    height: auto;
+    background: white;
+  }
+  
+  .checklist-container .p-4 {
+    padding: 2mm;
+    background: white;
+  }
+  
+  .checklist-item {
+    margin-bottom: 1mm;
+    background: white;
+  }
+    
+  @page {
+    size: A4 landscape;
+    margin: 5mm;
+  }
+  
+  /* Ensure print styles work in all browsers */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
+  }
+  
+  /* Force all utility classes to white background */
+  .bg-gray-800,
+  .bg-gray-900,
+  [class*="bg-gray"],
+  [class*="bg-slate"],
+  [class*="bg-zinc"],
+  [class*="bg-neutral"],
+  [class*="bg-stone"] {
+    background-color: white;
+    background: white;
+  }
+  
+  .text-white {
+  }
+}
+
+.print-only { 
+  display: none; 
+}
+
+/* Dotted line styles */
+.checklist-item {
+  display: flex;
+  align-items: baseline;
+  position: relative;
+  margin-bottom: 0.75rem;
+  cursor: move;
+  transition: background-color 0.2s;
+}
+
+.checklist-item:hover {
+  background-color: #f9fafb;
+}
+
+.checklist-item.dragging {
+  opacity: 0.5;
+}
+
+.checklist-item-content {
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  position: relative;
+}
+
+.checklist-item-target {
+  white-space: nowrap;
+  padding-right: 0.5rem;
+  background: white;
+  position: relative;
+  z-index: 1;
+}
+
+.checklist-item-state {
+  white-space: nowrap;
+  padding-left: 0.5rem;
+  background: white;
+  position: relative;
+  z-index: 1;
+  margin-left: auto;
+  font-family: monospace;
+}
+
+.checklist-item-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.25rem;
+  height: 1px;
+  background-image: repeating-linear-gradient(to right, #9ca3af 0px, #9ca3af 2px, transparent 2px, transparent 6px);
+  z-index: 0;
+}
+
+.checklist-item-actions {
+  background: white;
+  position: relative;
+  z-index: 2;
+  margin-left: 0.5rem;
+} 
