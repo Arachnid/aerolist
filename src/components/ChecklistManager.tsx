@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Plus, Download, Upload, Printer } from 'lucide-react';
-import { Checklist, ChecklistItem } from '../types';
+import { Checklist, ChecklistItem, ChecklistDivider } from '../types';
 import { DEFAULT_CHECKLISTS } from '../constants/defaultData';
 import { exportChecklists, importChecklists, printChecklists } from '../utils/checklistUtils';
 import ChecklistCard from './ChecklistCard';
@@ -45,6 +45,19 @@ const ChecklistManager: React.FC = () => {
           state: "CHECK"
         };
         return { ...c, items: [...c.items, newItem] };
+      }
+      return c;
+    }));
+  };
+
+  const addDivider = (checklistId: number) => {
+    setChecklists(checklists.map(c => {
+      if (c.id === checklistId) {
+        const newDivider: ChecklistDivider = {
+          id: Date.now(),
+          type: 'divider'
+        };
+        return { ...c, items: [...c.items, newDivider] };
       }
       return c;
     }));
@@ -169,6 +182,7 @@ const ChecklistManager: React.FC = () => {
               onDelete={deleteChecklist}
               onUpdateTitle={updateChecklistTitle}
               onAddItem={addItem}
+              onAddDivider={addDivider}
               onUpdateItem={updateItem}
               onDeleteItem={deleteItem}
               onReorderItems={reorderItems}
